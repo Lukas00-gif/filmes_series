@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'filmes/css/melhores2020.css' %}">
+{% endblock %}
+{% block 'title' %} Melhores de 2021 {% endblock %}
+
+{% block 'body' %}
+
+<div class="container mt-lg-5">
+
+    <div class="card" style="margin-bottom: 1%; margin-left: 2%; width: 95%;">
+     <div class="card-header">
+       Melhores de 2021
+     </div>
+     <div class="card-body">
+       <blockquote class="blockquote mb-0">
+         <p>Categoria 1 - Principal</p>
+         <footer class="blockquote-footer">
+           São Elas: Filme do Ano, Filme, Diretor, Ator, Atriz, 
+           Ator Coadjuvante, Atriz Coadjuvante, Vilão
+         </footer>
+       </blockquote>
+     </div>
+   </div>
+
+
+  <div class="card" style="width: 70%; margin-left: 13%; margin-bottom: 1%;">
+   <div class="card-body">
+     <h5 class="card-title">Ganhadores</h5>
+     <h6 class="card-subtitle mb-2 text-muted">São Elas: </h6>
+     <ul>
+       <li>Melhor Filme do Ano de 2021: <strong>Duna(HBO Max)</strong></li>
+       <li>Melhor Filme: <strong>Meu Pai</strong></li>
+       <li>Melhor Diretor: <strong>Jane Campion | Ataque dos Cães(Netflix)</strong></li>
+       <li>Melhor Ator: <strong>Anthony Hopkins | Antony | Meu Pai</strong></li>
+       <li>Melhor Atriz: <strong>Viola Davis | Ma Reyer | A Suprema Voz dos Blues(Netflix)</strong></li>
+       <li>Melhor Ator Coadjuvante: <strong>Kodi Smith-Mcphee | Peter | Ataque dos Cães(Netflix)</strong></li>
+       <li>Melhor Atriz Coadjuvante: <strong>Kirsten Dust | Rose Gordon | Ataque dos Cães(Netflix)</strong></li>
+       <li>Melhor Vilão: <strong>Emma Thompson | Baronesa | Cruella(Disney)</li></strong>
+     </ul>
+   </div>
+ </div>
+ 
+  <!-- categoria 2  -->
+ 
+  <div class="card" style="margin-bottom: 1%; margin-left: 2%; width: 95%;">
+   <div class="card-header">
+     Melhores de 2021
+   </div>
+   <div class="card-body">
+     <blockquote class="blockquote mb-0">
+       <p>Categoria 2 - Generos</p>
+       <footer class="blockquote-footer">
+         São Elas: Filme de Suspence, Filme de Horror/Terror/Terror Psicologico,
+         Melhor Drama, Melhor Animação/Computaçao Grafica, Melhor Ficção Cientifica, Melhor Ação, 
+         Melhor Filme na Netflix, Filme na HBO Max
+       </footer>
+     </blockquote>
+   </div>
+ </div>
+ 
+ <div class="card" style= "width: 70%; margin-left: 13%; margin-bottom: 1%;">
+   <div class="card-body">
+     <h5 class="card-title">Ganhadores</h5>
+     <h6 class="card-subtitle mb-2 text-muted">são Elas</h6>
+     <ul>
+       <li>Melhor filme de Suspence: <strong>Maligno(HBO Max)</strong></li>
+       <li>Melhor filme de Horror/Terror/Terror Psicologico: <strong>Maligno(HBO Max)</strong></li>
+       <li>Melhor filme de Drama: <strong>Meu Pai</strong></li>
+       <li>Melhor filme de Animação/Computação Grafica: <strong>Godzilla vs Kong(HBO Max)</strong></li>
+       <li>Melhor filme de Ficção Cientifica: <strong>Duna(HBO Max)</strong></li>
+       <li>Melhor filme de Ação: <strong>O Esquadrão Suicida(HBO Max)</strong></li>
+       <li>Melhor filme na Netflix: <strong>Ataque dos Cães</strong></li>
+       <li>Melhor filme na HBO Max: <strong>O Esquadrão Suicida</strong></li>
+     </ul>
+   </div>
+ </div>
+ 
+ <!-- categoria 3  -->
+ 
+ <div class="card" style="margin-bottom: 1%; margin-left: 2%; width: 95%;">
+   <div class="card-header">
+     Melhores de 2021
+   </div>
+   <div class="card-body">
+     <blockquote class="blockquote mb-0">
+       <p>Categoria 3 - Tecnica</p>
+       <footer class="blockquote-footer">
+         São Elas: Historia, Enredo, Roteiro, Edição, Edição de Som, Trilha Sonora,
+         Mixagem de Som, Fotografia, Figurino, Efeitos Visuais
+       </footer>
+     </blockquote>
+   </div>
+ </div>
+ 
+ <div class="card" style= "width: 70%; margin-left: 13%; margin-bottom: 1%;">
+   <div class="card-body">
+     <h5 class="card-title">Ganhadores</h5>
+     <h6 class="card-subtitle mb-2 text-muted">são Elas</h6>
+     <ul>
+       <li>Melhor Historia: <strong>Ataque dos Cães(Netflix)</strong></li>
+       <li>Melhor Enredo: <strong>Meu Pai</strong></li>
+       <li>Melhor Roteiro: <strong>Bela Vingança</strong></li>
+       <li>Melhor Edição: <strong>O Esquadrão Suicida(HBO Max)</strong></li>
+       <li>Melhor Edição de Som: <strong>Um Lugar Silencioso Part 2(HBO Max)</strong></li>
+       <li>Melhor Trilha Sonora: <strong>A Suprema Voz Dos Blues(Netflix)</strong></li>
+       <li>Melhor Mixagem de Som: <strong>A Suprema Voz Dos Blues(Netflix)</strong></li>
+       <li>Melhor Fotografia: <strong>Duna(HBO Max)</strong></li>
+       <li>Melhor Figurino: <strong>Cruella(Disney)</strong></li>
+       <li>Melhor Efeitos Visuais: <strong>Duna(HBO Max)</strong></li>
+     </ul>
+   </div>
+ </div>
+</div>
+
+<!-- contagem do ganhadores -->
+
+<div class="card" style= "width: 40%; margin-left: 28%; margin-bottom: 1%;">
+  <div class="card-body">
+    <h5 class="card-title">Contagem dos Ganhadores</h5>
+    <ul>
+      <li><strong>Ataque dos Cães(Netflix): 5</strong></li>
+      <li><strong>Meu Pai: 4</strong></li>
+      <li><strong>A Suprema Voz Dos Blues(Netflix): 3</strong></li>
+      <li><strong>Duna(HBO Max): 3</strong></li>
+      <li><strong>O Esquadrão Suicida: 2</strong></li>
+      <li><strong>Maligno(HBO Max): 2</strong></li>
+      <li><strong>Cruella(Disney): 2</strong></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+{% endblock %}
+{% block footer %}
+<div class="container-footer">
+  <h4>2022</h4>
+</div>
+{% endblock %}

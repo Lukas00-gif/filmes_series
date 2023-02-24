@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'filmes/css/filmes.css' %}">
+{% endblock %}
+{% block 'title' %} filmes {% endblock %}
+
+{% block 'body' %}
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome do Filme</th>
+        <th scope="col">Onde Assistir</th>
+        <th scope="col">Genero</th>
+        <th scope="col">Data que Assistir</th>
+        <th scope="col">Diretor</th>
+        <th scope="col">Roterista</th>
+        <th scope="col">Ano de Lançamento</th>
+        <th scope="col">Avaliação</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for filme in filmes %}
+      <tr>
+        <!-- <td>{{filme.id}}</td> -->
+        <td>{{filme.nome_do_filme}}</td>
+        <td>{{filme.onde_assisti}}</td>
+        <td>{{filme.genero_filme}}</td>
+        <td>{{filme.data_assisti}}</td>
+        <td>{{filme.diretor}}</td>
+        <td>{{filme.roteirista}}</td>
+        <td>{{filme.ano_lancamento_filme}}</td>
+        <td>{{filme.avaliacao}}</td>
+        <td> 
+          <div class="button-container">
+            <!-- <button class="button btn btn-info">
+              <a href="{% url 'editar_filme' filme.id %}">Editar</a>
+            </button> -->
+
+              <!-- <button class="button btn btn-danger">
+                <a href="{% url 'deletar_filme' filme.id %}">Deletar</a>
+              </button> -->
+              <a href="{% url 'editar_filme' filme.id %}" 
+                class="button btn mx-1"
+                style="background-color: #3139a3; color: #fff;"
+                >Editar
+              </a>
+              <a href="{% url 'deletar_filme' filme.id %}" 
+                class="button btn mx-1"
+                style="background-color: #e82e2e; color: #fff;"
+                >Deletar
+              </a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-primary" 
+  type="button" data-bs-toggle="offcanvas" 
+  data-bs-target="#offcanvasBottom" 
+  style="margin-left: 10%; margin-bottom: 2%; background-color: #111dbf;"
+  aria-controls="offcanvasBottom">Adicionar um Filme
+</button>
+
+<div class="offcanvas offcanvas-bottom h-75" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Adicione um Filme</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <!-- adicionar o filme -->
+    <div class="card cor" style= "width: 70%; margin-left: 13%; margin-bottom: 1%;">
+      <div class="card-body">
+        <form action="" method="POST">
+
+          {% csrf_token %}
+      
+          {% if messages %}
+            {% for message in messages %}
+              <section class="alert {{message.tags}}">
+                  {{message}}
+                </section>
+            {% endfor %}
+          {% endif %} 
+        <h2 class="card-title">Adicionar Filmes</h2>
+        <div class="row">
+          <div class="col">
+            
+            <!-- nome do filmes -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Nome do Filme:</label>
+              <div class="col">
+                <input name="nome_filme" type="text" 
+                  class="form-control input-tarefa" 
+                  placeholder="Digite o nome do filme" 
+                  style="width: 50%; margin-left: 0%;">
+              </div>
+            </div>
+
+            <!-- Onde assisir o filme -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Onde Assistir:</label>
+              <div class="col">
+                <select name="onde_assistir" class="form-select input-tarefa" style="width: 50%; margin-left: 0%;">
+                  <option value="Prime Video">Prime Video</option>
+                  <option value="Netflix">Netflix</option>
+                  <option value="Sony/Marvel">Sony/Marvel</option>
+                  <option value="HBO Max">HBO Max</option>
+                  <option value="Star+">Star+</option>
+                  <option value="DC">DC</option>
+                  <option value="Fox">Fox</option>
+                  <option value="Cinema">Cinema</option>
+                  <option value="Não Oficial">Não Oficial</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Genero do Filmes -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Genero: </label>
+              <div class="col">
+                <select name="genero" class="form-select input-tarefa" style="width: 50%; margin-left: 0%;" multiple>
+                  <option value="Ação">Ação</option>
+                  <option value="Ficção Cientifica">Ficção Cientifica</option>
+                  <option value="Heroi">Heroi</option>
+                  <option value="Aventura">Aventura</option>
+                  <option value="Fantasia">Fantasia</option>
+                  <option value="Velho Oeste">Velho Oeste</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Horror">Horror</option>
+                  <option value="Esportes">Esportes</option>
+                  <option value="Comedia">Comedia</option>
+                  <option value="Animação">Animação</option>
+                  <option value="Guerra">Guerra</option>
+                  <option value="Misterio">Misterio</option>
+                  <option value="Crime">Crime</option>
+                  <option value="Musical">Musical</option>
+                  <option value="Terror">Terror</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Suspence">Suspence</option>
+                  <option value="Cinebiografia">Cinebiografia</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- data que assisti -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Data que Assisti:</label>
+              <div class="col">
+                <input name="data_assisti" 
+                  type="date" class="form-control input-tarefa" 
+                  style="width: 50%; margin-left: 0%;" >
+              </div>
+            </div>
+
+          </div>
+
+          <!-- diretor -->
+          <div class="col">
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Diretor:</label>
+              <div class="col">
+                <input name="diretor" 
+                type="text" 
+                class="form-control input-tarefa" 
+                placeholder="Informe do Diretor(es)"
+                style="width: 50%; margin-left: 0%;">
+              </div>
+            </div>
+
+            <!-- roteirista -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Roteiristas:</label>
+              <div class="col">
+                <input name="roteiristas" 
+                type="text" class="form-control input-tarefa" 
+                placeholder="Informe os Roteristas"
+                style="width: 50%; margin-left: 0%;">
+              </div>
+            </div>
+
+            <!-- ano lancamento -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Ano de Lançamento:</label>
+              <div class="col">
+                <input name="ano_lancamento" 
+                type="text" 
+                class="form-control input-tarefa"
+                placeholder="Informe do ano de lançamento do filme"
+                style="width: 50%; margin-left: 0%;">
+              </div>
+            </div>
+
+            <!-- avaliacao do filmes -->
+            <div class="form-group">
+              <label class="titulo col-form-label" style="margin-left: 0%;">Avaliação:</label>
+              <div class="col">
+                <select name="avaliacao" class="form-select input-tarefa" style="width: 50%; margin-left: 0%;">
+                  <option value="Muito Ruim">Muito Ruim</option>
+                  <option value="Ruim">Ruim</option>
+                  <option value="Okay">Okay</option>
+                  <option value="Bom">Bom</option>
+                  <option value="Otimo">Otimo</option>
+                  <option value="Excelente">Excelente</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-6">
+            <input type="submit" 
+              value="Adicionar Filme" 
+              class="btn btn-blue"
+              style="margin-left: 0%; margin-top: 2%;"
+            >
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
+{% block footer %}
+  <div class="container-footer">
+    <h4>2022</h4>
+  </div>
+{% endblock %}
