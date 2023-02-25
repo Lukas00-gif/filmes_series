@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -30,7 +30,7 @@ def filmes(request):
              messages.add_message(request, constants.ERROR, 'Preencha todos os campos, todos sao obrigatorios')
              return redirect('/')
 
-        # os verdes e da classe Filmes e os roxos sao as variaveis
+        # os verdes e da classe Filmes do models e os roxos sao as variaveis
         filmes = Filmes(nome_do_filme=nomeFilmes,
                         onde_assisti=assistir,
                         genero_filme=generoFilme,
@@ -41,9 +41,8 @@ def filmes(request):
                         avaliacao=avaliacao)
         
         filmes.save()
-        messages.add_message(request, constants.SUCCESS, 'Filme adicionado')
+        messages.add_message(request, constants.SUCCESS, 'Filme Adicionado com Sucesso')
 
-        # return render(request, 'filmes.html')
         return redirect('/')
 
 # ----------------------------- Editar filme -----------------------------

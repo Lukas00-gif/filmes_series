@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'filmes/css/filmes.css' %}">
+{% endblock %}
+{% block 'title' %} series {% endblock %}
+
+{% block 'body' %}
+
+<div class="container">
+  <table class="table mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Nome da Serie</th>
+        <th scope="col">Temporada</th>
+        <th scope="col">Episodio</th>
+        <th scope="col">Streaming</th>
+        <th scope="col">Data que Assisti</th>
+        <th scope="col">Status</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for serie in series %}
+      <tr>
+        <td>{{serie.nome_serie}}</td>
+        <td>{{serie.temporada}}</td>
+        <td>{{serie.episodio}}</td>
+        <td>{{serie.streaming}}</td>
+        <td>{{serie.data_assistir_serie}}</td>
+        <td>
+          <!-- {% if serie.status == 'assistindo' %}
+            <span class="badge" style="background-color: #d60f87;">Assistindo Serie</span>
+          {% endif %} -->
+          {{serie.status}}
+
+        </td>
+        <td> 
+          <div class="button-container">
+              <a href="#" 
+                class="button btn mx-1 disabled"
+                style="background-color: #3139a3; color: #fff;"
+                >Editar
+              </a>
+              <a href="#" 
+                class="button btn mx-1 disabled"
+                style="background-color: #e82e2e; color: #fff;"
+                >Deletar
+              </a>
+          </div>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="card cor" style= "width: 70%; margin-left: 13%; margin-bottom: 1%;">
+    <div class="card-body">
+      <form action="" method="POST">
+
+        {% csrf_token %}
+    
+        <!-- {% if messages %}
+          {% for message in messages %}
+            <section class="alert {{message.tags}}">
+                {{message}}
+              </section>
+          {% endfor %}
+        {% endif %}  -->
+
+      <h2 class="card-title">Adicionar Series</h2>
+      <div class="row">
+        <div class="col">
+          
+          <!-- nome da series -->
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Nome da Serie:</label>
+            <div class="col">
+              <input name="nome_da_serie" type="text" 
+                class="form-control input-tarefa" 
+                placeholder="Digite o nome da serie" 
+                style="width: 60%; margin-left: 0%;">
+            </div>
+          </div>
+
+          <!-- Temporada -->
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Temporada:</label>
+            <div class="col">
+              <input name="temporada_serie" type="text" 
+                class="form-control input-tarefa" 
+                placeholder="Qual temporada a serie esta" 
+                style="width: 60%; margin-left: 0%;">
+            </div>
+          </div>
+
+          <!-- Episodio -->
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Episodio: </label>
+            <div class="col">
+              <input name="episodio_serie" type="text" 
+                class="form-control input-tarefa" 
+                placeholder="Qual episodio a serie esta" 
+                style="width: 60%; margin-left: 0%;">
+            </div>
+          </div>
+
+          <!-- Streaming -->
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Streaming:</label>
+            <div class="col">
+                <select name="streaming_serie" class="form-select input-tarefa" 
+                style="width: 60%; margin-left: 0%;">
+                  <option value="prime_video">Prime Video</option>
+                  <option value="netflix">Netflix</option>
+                  <option value="hbo_max">HBO Max</option>
+                  <option value="star+">Star+</option>
+                  <option value="disney+">Disney+</option>
+                  <option value="fox">Fox</option>
+                  <option value="amc">AMC</option>
+                  <option value="paramout+">Paramout+</option>
+                  <option value="não_oficial">Não Oficial</option>
+                </select>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Data que assistir -->
+        <div class="col">
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Data que Assistir:</label>
+            <div class="col">
+              <input name="data_serie" 
+              type="date" 
+              class="form-control input-tarefa" 
+              style="width: 60%; margin-left: 0%;">
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div class="form-group">
+            <label class="titulo col-form-label" style="margin-left: 0%;">Status da Serie:</label>
+            <div class="col">
+              <select name="streaming_serie" class="form-select input-tarefa" 
+                style="width: 60%; margin-left: 0%;">
+                  <option value="em_breve">Em Breve</option>
+                  <option value="assistindo">Assistindo</option>
+                  <option value="pausado">Pausado</option>
+                  <option value="finalizada">Finalizada</option>
+                  <option value="cancelada">Cancelada</option>
+                </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-6">
+          <input type="submit" 
+            value="Adicionar Nova Serie" 
+            class="btn btn-blue disabled"
+            style="margin-left: 0%; margin-top: 2%;"
+          >
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
+{% block footer %}
+<div class="container-footer">
+  <h4>2022</h4>
+</div>
+{% endblock %}

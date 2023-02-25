@@ -9,9 +9,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from filmes import views
+from series import views as series_views
 
 
 urlpatterns = [
@@ -25,5 +26,10 @@ urlpatterns = [
     path('editar/<int:id>', views.editar_filme, name='editar_filme'),
     path('alterar_filme/<int:id>', views.alterar_filme, name='alterar_filme'),
     
-    path('deletar/<int:id>', views.deletar_filme, name='deletar_filme')
+    path('deletar/<int:id>', views.deletar_filme, name='deletar_filme'),
+
+    # urls series
+    path('series/', series_views.pag_series , name='series')
+
+    
 ]

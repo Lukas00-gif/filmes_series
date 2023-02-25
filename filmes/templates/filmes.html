@@ -37,13 +37,6 @@
         <td>{{filme.avaliacao}}</td>
         <td> 
           <div class="button-container">
-            <!-- <button class="button btn btn-info">
-              <a href="{% url 'editar_filme' filme.id %}">Editar</a>
-            </button> -->
-
-              <!-- <button class="button btn btn-danger">
-                <a href="{% url 'deletar_filme' filme.id %}">Deletar</a>
-              </button> -->
               <a href="{% url 'editar_filme' filme.id %}" 
                 class="button btn mx-1"
                 style="background-color: #3139a3; color: #fff;"
@@ -231,10 +224,6 @@
 
   </div>
 </div>
-
-
-
-
 
 {% endblock %}
 {% block footer %}
