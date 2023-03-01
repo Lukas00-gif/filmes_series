@@ -3,6 +3,19 @@
 
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'filmes/css/filmes.css' %}">
+<style>
+.alert {
+  transition: opacity 1.5s ease-out;
+  opacity: 1;
+}
+  
+.alert.hide {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+</style>
 {% endblock %}
 {% block 'title' %} series {% endblock %}
 
@@ -27,13 +40,52 @@
         <td>{{serie.nome_serie}}</td>
         <td>{{serie.temporada}}</td>
         <td>{{serie.episodio}}</td>
-        <td>{{serie.streaming}}</td>
+        <td>
+          {% if serie.streaming == 'prime_video' %}
+            <span class="badge" style="background-color: #1c03fc;">Prime Video</span>
+            
+          {% elif serie.streaming == 'netflix' %}
+            <span class="badge" style="background-color: #f50c0c;">Netflix</span>
+            
+          {% elif serie.streaming == 'hbo_max' %}
+            <span class="badge" style="background-color: #4c02a1;">HBO Max</span>
+
+          {% elif serie.streaming == 'disney+' %}
+            <span class="badge" style="background-color: #1660b5;">Disney+</span>
+
+          {% elif serie.streaming == 'star+' %}
+            <span class="badge" style="background-color: #c96213;">Star+</span>
+
+          {% elif serie.streaming == 'fox' %}
+            <span class="badge" style="background-color: #9f8f13;">FX</span>
+
+          {% elif serie.streaming == 'paramout+' %}
+            <span class="badge" style="background-color: #040db0;">Paramount+</span>
+
+          {% elif serie.streaming == 'amc' %}
+            <span class="badge" style="background-color: #030535;">AMC</span>
+
+          {% else %}
+            <span class="badge" style="background-color: #3e3f53;">Não Oficial</span>
+          {% endif %}
+        </td>
         <td>{{serie.data_assistir_serie}}</td>
         <td>
-          <!-- {% if serie.status == 'assistindo' %}
-            <span class="badge" style="background-color: #d60f87;">Assistindo Serie</span>
-          {% endif %} -->
-          {{serie.status}}
+          {% if serie.status == 'assistindo' %}
+            <span class="badge" style="background-color: #16b540;">Assistindo Serie</span>
+
+          {% elif serie.status == 'pausado' %}
+            <span class="badge" style="background-color: #141763;">Serie Pausada</span>
+
+          {% elif serie.status == 'finalizada' %}
+            <span class="badge" style="background-color: #9f2a10;">Temporada Finalizada</span>
+            
+          {% elif serie.status == 'cancelado' %}
+            <span class="badge" style="background-color: #f50505;">Cancelada</span>
+
+          {% else %}
+            <span class="badge" style="background-color: #1d0ea1;">Em Breve</span>
+          {% endif %}
 
         </td>
         <td> 
@@ -55,19 +107,20 @@
     </tbody>
   </table>
 
+  <!-- adicionar as series -->
   <div class="card cor" style= "width: 70%; margin-left: 13%; margin-bottom: 1%;">
     <div class="card-body">
       <form action="" method="POST">
 
         {% csrf_token %}
     
-        <!-- {% if messages %}
+        {% if messages %}
           {% for message in messages %}
-            <section class="alert {{message.tags}}">
+            <section class="alert {{message.tags}} message">
                 {{message}}
               </section>
           {% endfor %}
-        {% endif %}  -->
+        {% endif %} 
 
       <h2 class="card-title">Adicionar Series</h2>
       <div class="row">
@@ -143,13 +196,13 @@
           <div class="form-group">
             <label class="titulo col-form-label" style="margin-left: 0%;">Status da Serie:</label>
             <div class="col">
-              <select name="streaming_serie" class="form-select input-tarefa" 
+              <select name="status_serie" class="form-select input-tarefa" 
                 style="width: 60%; margin-left: 0%;">
                   <option value="em_breve">Em Breve</option>
                   <option value="assistindo">Assistindo</option>
                   <option value="pausado">Pausado</option>
                   <option value="finalizada">Finalizada</option>
-                  <option value="cancelada">Cancelada</option>
+                  <option value="cancelado">Cancelada</option>
                 </select>
             </div>
           </div>
@@ -160,7 +213,7 @@
         <div class="col-6">
           <input type="submit" 
             value="Adicionar Nova Serie" 
-            class="btn btn-blue disabled"
+            class="btn btn-blue"
             style="margin-left: 0%; margin-top: 2%;"
           >
         </div>
@@ -171,6 +224,12 @@
 
 </div>
 
+<script>
+  setTimeout(function() {
+    var alert = document.querySelector('.alert');
+    alert.classList.add('hide');
+  }, 5000);
+</script>
 
 </div>
 

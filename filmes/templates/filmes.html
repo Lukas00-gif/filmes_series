@@ -3,14 +3,29 @@
 
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'filmes/css/filmes.css' %}">
+<style>
+
+.alert {
+  transition: opacity 1.5s ease-out;
+  opacity: 1;
+}
+
+.alert.hide {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+</style>
+
 {% endblock %}
 {% block 'title' %} filmes {% endblock %}
 
 {% block 'body' %}
 
-<div class="container">
+<div class="container" style="margin-top: 2%;">
   <table class="table">
-    <thead>
+    <thead class="table-dark">
       <tr>
         <th scope="col">Nome do Filme</th>
         <th scope="col">Onde Assistir</th>
@@ -26,15 +41,94 @@
     <tbody>
       {% for filme in filmes %}
       <tr>
-        <!-- <td>{{filme.id}}</td> -->
         <td>{{filme.nome_do_filme}}</td>
-        <td>{{filme.onde_assisti}}</td>
+        <td>
+          {% if filme.onde_assisti == 'Prime Video' %}
+            <span class="badge" style="background-color: #1c03fc;">Prime Video</span>
+
+          {% elif filme.onde_assisti == 'Netflix' %}
+            <span class="badge" style="background-color: #f50c0c;">Netflix</span>
+
+          {% elif filme.onde_assisti == 'Sony/Marvel' %}
+            <span class="badge" style="background-color: #2b242c;">Sony/Marvel</span>
+
+          {% elif filme.onde_assisti == 'HBO Max' %}
+            <span class="badge" style="background-color: #4c02a1;">HBO Max</span>
+
+          {% elif filme.onde_assisti == 'Marvel' %}
+            <span class="badge" style="background-color: #870e0e;">Marvel</span>
+
+          {% elif filme.onde_assisti == 'Star+' %}
+            <span class="badge" style="background-color: #c96213;">Star+</span>
+
+          {% elif filme.onde_assisti == 'DC' %}
+            <span class="badge" style="background-color: #100f0e;">DC</span>
+
+          {% elif filme.onde_assisti == 'Fox' %}
+            <span class="badge" style="background-color: #9f8f13;">Fox</span>
+
+          {% elif filme.onde_assisti == 'Cinema' %}
+            <span class="badge" style="background-color: #7f644f;">Cinema</span>
+
+          {% else %}
+            <span class="badge" style="background-color: #74898d;">Não Oficial</span>
+          {% endif %}
+        </td>
         <td>{{filme.genero_filme}}</td>
         <td>{{filme.data_assisti}}</td>
         <td>{{filme.diretor}}</td>
         <td>{{filme.roteirista}}</td>
         <td>{{filme.ano_lancamento_filme}}</td>
-        <td>{{filme.avaliacao}}</td>
+        <td width="12%">
+          {% if filme.avaliacao == 'Muito Ruim' %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+
+          {% elif filme.avaliacao == 'Ruim' %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+          
+          {% elif filme.avaliacao == 'Okay' %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+          
+          {% elif filme.avaliacao == 'Bom' %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+            <i class="bi bi-star"></i>
+          
+          {% elif filme.avaliacao == 'Otimo' %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+          
+          {% else %}
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          {% endif %}
+        </td>
         <td> 
           <div class="button-container">
               <a href="{% url 'editar_filme' filme.id %}" 
@@ -77,11 +171,12 @@
       
           {% if messages %}
             {% for message in messages %}
-              <section class="alert {{message.tags}}">
+              <section class="alert {{message.tags}} message">
                   {{message}}
                 </section>
             {% endfor %}
           {% endif %} 
+
         <h2 class="card-title">Adicionar Filmes</h2>
         <div class="row">
           <div class="col">
@@ -224,6 +319,13 @@
 
   </div>
 </div>
+
+<script>
+  setTimeout(function() {
+    var alert = document.querySelector('.alert');
+    alert.classList.add('hide');
+  }, 5000);
+</script>
 
 {% endblock %}
 {% block footer %}

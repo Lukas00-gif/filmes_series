@@ -23,6 +23,9 @@ def filmes(request):
 
 
         #validacoes
+        #fazer validaççao em diretor onde so pode letra e nao numero, 
+        # roteiro a msm coisa do diretor
+        # e o ano de lançamento so pode numero(talvez tentar validar so com ano)
         if (len(nomeFilmes.strip()) == 0 or len(assistir.strip()) == 0 or 
         len(generoFilme.strip()) == 0 or len(dataAssistir.strip()) == 0 or 
         len(diretor.strip()) == 0 or len(roteiro.strip()) == 0 or len(anoLancamento.strip()) == 0 or
@@ -64,13 +67,19 @@ def alterar_filme(request, id):
         editarAssistir = request.POST.get('onde_assistir')
         filmes.onde_assisti = editarAssistir
 
-        #editando o genero
+        #editando o genero (ver dps uma possivel validaçao sobre o genero do filme)
         # editarGeneroFilme = request.POST.get('genero')    
         # filmes.genero_filme = editarGeneroFilme
 
-        #editando o data assistir
+
+        #editando e validando o campo data_assisti
         editarDataAssistir = request.POST.get('data_assisti')
-        filmes.data_assisti = editarDataAssistir
+        #se existir(for verdadeira) essa variavel ele vai sobrepor a data antiga
+        if editarDataAssistir:
+            filmes.data_assisti = editarDataAssistir
+        # se nao ele so vai continuar do mesmo jeito que antes, sem da erro
+        else:
+            filmes.data_assisti == editarDataAssistir
 
         #editando o diretor do filme
         editarDiretor = request.POST.get('diretor')
@@ -87,15 +96,7 @@ def alterar_filme(request, id):
         #editando a avaliaçao do filme
         editarAvaliacao = request.POST.get('avaliacao')
         filmes.avaliacao = editarAvaliacao
-
-        #validacoes ???
-            # if (len(nomeFilmes.strip()) == 0 or len(assistir.strip()) == 0 or 
-            # len(generoFilme.strip()) == 0 or len(dataAssistir.strip()) == 0 or 
-            # len(diretor.strip()) == 0 or len(roteiro.strip()) == 0 or len(anoLancamento.strip()) == 0 or
-            # len(avaliacao.strip()) == 0): 
-            #      messages.add_message(request, constants.ERROR, 'Preencha todos os campos, todos sao obrigatorios')
-            #      return redirect('/')
-
+        
 
         filmes.save()
         return redirect ('/')

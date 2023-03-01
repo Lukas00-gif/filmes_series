@@ -28,8 +28,7 @@ urlpatterns = [
     
     path('deletar/<int:id>', views.deletar_filme, name='deletar_filme'),
 
+   
     # urls series
     path('series/', series_views.pag_series , name='series')
-
-    
 ]

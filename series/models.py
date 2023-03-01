@@ -25,6 +25,7 @@ class Series(models.Model):
     )
 
     #colocar algo sobre o seasion finale e series finale dps
+    # mudar a data ja que a a data que eu irei assistir ou colocar data que irei assisitir
     nome_serie = models.CharField(max_length=120)
     temporada = models.IntegerField()
     episodio = models.IntegerField()
